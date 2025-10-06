@@ -34,11 +34,15 @@ def main():
 
     lyric_line = st.text_input("Enter your lyric line (English):")
 
-    languages = {
-        "Spanish": "es",
-        "Kannada": "kn",
-        "Tamil": "ta",
-    }
+   languages = {
+    "Spanish": "es",
+    "Kannada": "kn",
+    "Tamil": "ta",
+    "Malayalam": "ml",
+    "Hindi": "hi",
+    "Telugu": "te",
+    "Japanese": "ja",
+}
 
     tgt_lang = st.selectbox("Select target language for translation:", list(languages.keys()))
 
