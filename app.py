@@ -5,12 +5,15 @@ from googletrans import Translator
 
 translator = Translator()
 
+from deep_translator import GoogleTranslator
+
 def translate(text, tgt_lang_code):
     try:
-        translation = translator.translate(text, dest=tgt_lang_code)
-        return translation.text
+        translated = GoogleTranslator(source='auto', target=tgt_lang_code).translate(text)
+        return translated
     except Exception as e:
         return f"Error in translation: {e}"
+
 
 def get_rhymes(word):
     response = requests.get(f'https://api.datamuse.com/words?rel_rhy={word}&max=10')
