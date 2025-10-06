@@ -1,12 +1,9 @@
 import streamlit as st
 import requests
 import pronouncing
-from googletrans import Translator
-
-translator = Translator()
-
 from deep_translator import GoogleTranslator
 
+# Function to translate text using deep-translator
 def translate(text, tgt_lang_code):
     try:
         translated = GoogleTranslator(source='auto', target=tgt_lang_code).translate(text)
@@ -14,7 +11,7 @@ def translate(text, tgt_lang_code):
     except Exception as e:
         return f"Error in translation: {e}"
 
-
+# Function to get rhymes from Datamuse API
 def get_rhymes(word):
     response = requests.get(f'https://api.datamuse.com/words?rel_rhy={word}&max=10')
     if response.status_code == 200:
@@ -23,6 +20,7 @@ def get_rhymes(word):
     else:
         return []
 
+# Function to count syllables using pronouncing
 def count_syllables(word):
     phones = pronouncing.phones_for_word(word)
     if phones:
@@ -40,16 +38,15 @@ def main():
         "Spanish": "es",
         "Kannada": "kn",
         "Tamil": "ta",
-        # Add more if you want
     }
 
-    tgt_lang = st.selectbox("Select target language:", list(languages.keys()))
+    tgt_lang = st.selectbox("Select target language for translation:", list(languages.keys()))
 
     if lyric_line:
         words = lyric_line.strip().split()
         last_word = words[-1].lower()
 
-        # Rhymes for last word
+        # Rhymes for the last word
         rhymes = get_rhymes(last_word)
         if rhymes:
             st.write(f"Rhymes for '{last_word}': {', '.join(rhymes)}")
@@ -62,7 +59,7 @@ def main():
         st.write(f"Syllables per word: {syllables_per_word}")
         st.write(f"Total syllables in your line: {total_syllables}")
 
-        # Translate
+        # Translate to selected language
         translation = translate(lyric_line, languages[tgt_lang])
         st.write(f"{tgt_lang} translation: {translation}")
 
