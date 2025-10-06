@@ -26,9 +26,9 @@ def count_syllables(word):
         return sum(1 for char in word.lower() if char in 'aeiou')
 
 def main():
-    st.title("Melosphere AI - Lyric Assistant Prototype")
+    st.title("Melosphere AI - Lyrics without limits")
 
-    lyric_line = st.text_input("Enter your lyric line (English):")
+    lyric_line = st.text_input("Enter your Lyric Line (English):")
 
     languages = {
         "Spanish": "es",
