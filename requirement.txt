@@ -1,4 +1,4 @@
 streamlit
 requests
-pronouncing
+pronouncing==0.2.0
 googletrans==4.0.0-rc1
